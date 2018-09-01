@@ -23,7 +23,7 @@ RUN apt-get update \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
     
- RUN sudo apt-get install apt-transport-https software-properties-common wget
+ RUN apt-get install apt-transport-https software-properties-common wget
  RUN wget https://launchpad.net/~kxstudio-debian/+archive/kxstudio/+files/kxstudio-repos_9.5.1~kxstudio3_all.deb
  RUN dpkg -i kxstudio-repos_9.5.1~kxstudio3_all.deb
  RUN apt-get update
