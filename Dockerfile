@@ -25,9 +25,9 @@ RUN apt-get update \
     
  RUN sudo apt-get install apt-transport-https software-properties-common wget
  RUN wget https://launchpad.net/~kxstudio-debian/+archive/kxstudio/+files/kxstudio-repos_9.5.1~kxstudio3_all.deb
- RUN sudo dpkg -i kxstudio-repos_9.5.1~kxstudio3_all.deb
+ RUN dpkg -i kxstudio-repos_9.5.1~kxstudio3_all.deb
  RUN apt-get update
- RUN sudo apt install kxstudio-meta-all
+ RUN apt install kxstudio-meta-all
 
 # build and install xrdp from source in one step (minimise size of container)
 RUN apt-get update \
