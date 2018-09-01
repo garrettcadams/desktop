@@ -22,6 +22,12 @@ RUN apt-get update \
         vnc4server \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+    
+ RUN sudo apt-get install apt-transport-https software-properties-common wget
+ RUN wget https://launchpad.net/~kxstudio-debian/+archive/kxstudio/+files/kxstudio-repos_9.5.1~kxstudio3_all.deb
+ RUN sudo dpkg -i kxstudio-repos_9.5.1~kxstudio3_all.deb
+ RUN apt-get update
+ RUN sudo apt install kxstudio-meta-all
 
 # build and install xrdp from source in one step (minimise size of container)
 RUN apt-get update \
@@ -76,6 +82,8 @@ RUN add-apt-repository ppa:numix/ppa \
     && apt-get install --yes --force-yes --no-install-recommends numix-icon-theme numix-icon-theme-circle \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+    
+    
 
 # add the customised files
 ADD ubuntu-files/lightdm-gtk-greeter.conf /etc/lightdm/lightdm-gtk-greeter.conf
