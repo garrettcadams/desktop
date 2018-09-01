@@ -23,11 +23,7 @@ RUN apt-get update \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
     
- RUN apt-get install apt-transport-https software-properties-common wget
- RUN wget https://launchpad.net/~kxstudio-debian/+archive/kxstudio/+files/kxstudio-repos_9.5.1~kxstudio3_all.deb
- RUN dpkg -i kxstudio-repos_9.5.1~kxstudio3_all.deb
- RUN apt-get update
- RUN apt install kxstudio-meta-all
+ 
 
 # build and install xrdp from source in one step (minimise size of container)
 RUN apt-get update \
@@ -92,6 +88,13 @@ ADD ubuntu-files/xfce-perchannel-xml /etc/xdg/xfce4/xfconf/xfce-perchannel-xml
 RUN mkdir -p /usr/share/backgrounds
 ADD ubuntu-files/background-default.png /usr/share/backgrounds/background-default.png
 RUN ln -s /usr/share/icons/Numix-Circle /usr/share/icons/KXicons
+
+RUN apt-get install apt-transport-https \
+         software-properties-common
+RUN wget https://launchpad.net/~kxstudio-debian/+archive/kxstudio/+files/kxstudio-repos_9.5.1~kxstudio3_all.deb
+RUN dpkg -i kxstudio-repos_9.5.1~kxstudio3_all.deb
+RUN apt-get update
+RUN apt install kxstudio-meta-all
 
 # add the user
 RUN useradd --create-home user
